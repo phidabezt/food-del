@@ -47,4 +47,16 @@
       margin-right: 15px;
     }    
   }
+
+  @media (max-width: 750px) {
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+    }
+
+    &__copyright {
+      text-align: center;
+    }
+  }
 }

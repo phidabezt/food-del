@@ -58,4 +58,10 @@
     }
   }
 
+  @media (max-width: 1050px) {
+    &__text {
+      max-width: 100%;
+      font-size: 14px;
+    }
+  }
 }
