@@ -1,19 +1,18 @@
-import classNames from "classnames"
+import classNames from 'classnames'
 
-const NavbarItem = ({ isActive, onMenuChange, value }) => {
+const NavbarItem = ({ linkTo, isActive, onMenuChange, value }) => {
   if (!value || isActive === undefined || !onMenuChange) return
 
-
-
   return (
-    <li
+    <a
+      href={linkTo}
       onClick={() => onMenuChange(value)}
-      className={classNames("navbar__item", {
-        "navbar__item--active": isActive,
+      className={classNames('navbar__item', {
+        'navbar__item--active': isActive,
       })}
     >
       {value}
-    </li>
+    </a>
   )
 }
 

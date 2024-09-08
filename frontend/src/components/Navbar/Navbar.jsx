@@ -11,21 +11,25 @@ const Navbar = () => {
       <img src={assets.logo} alt="" className="navbar__logo" />
       <ul className="navbar__menu">
         <NavbarItem
+          linkTo="/"
           value="home"
           isActive={activeMenuItem === "home"}
           onMenuChange={() => setActiveMenuItem("home")}
         />
         <NavbarItem
+          linkTo="#explore-menu"
           value="menu"
           isActive={activeMenuItem === "menu"}
           onMenuChange={() => setActiveMenuItem("menu")}
         />
         <NavbarItem
+          linkTo="#app-download"
           value="mobile-app"
           isActive={activeMenuItem === "mobile-app"}
           onMenuChange={() => setActiveMenuItem("mobile-app")}
         />
         <NavbarItem
+          linkTo="#footer"
           value="contact us"
           isActive={activeMenuItem === "contact-us"}
           onMenuChange={() => setActiveMenuItem("contact-us")}
