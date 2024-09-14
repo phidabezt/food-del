@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import { assets } from '../../assets/assets'
 import './Sidebar.scss'
 
@@ -5,18 +6,18 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebar__options'>
-        <div className='sidebar__option'>
+        <NavLink to='/add' className='sidebar__option'>
           <img src={assets.add_icon} alt='' />
           <p>Add Items</p>
-        </div>
-        <div className='sidebar__option'>
+        </NavLink>
+        <NavLink to='/list' className='sidebar__option'>
           <img src={assets.order_icon} alt='' />
           <p>List Items</p>
-        </div>
-        <div className='sidebar__option'>
+        </NavLink>
+        <NavLink to='/orders' className='sidebar__option'>
           <img src={assets.order_icon} alt='' />
           <p>Orders</p>
-        </div>
+        </NavLink>
       </div>
     </div>
   )

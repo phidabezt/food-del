@@ -22,6 +22,11 @@
     padding: 8px 10px;
     border-radius: 3px 0 0 3px;
     cursor: pointer;
+
+    &.active {
+      background-color: #fff0ed;
+      border-color: tomato;
+    }
   }
 
   @media (max-width: 900px) {
