@@ -6,9 +6,7 @@ import { assets } from '../../assets/assets'
 
 import './Add.scss'
 
-const Add = () => {
-  const url = 'http://localhost:4000'
-
+const Add = ({ url }) => {
   const [image, setImage] = useState(null)
   const [data, setData] = useState({
     name: '',
@@ -53,7 +51,6 @@ const Add = () => {
       setImage(null)
       toast.success(response.data.message)
     } else {
-
     }
   }
 
