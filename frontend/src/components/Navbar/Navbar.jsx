@@ -7,7 +7,7 @@ import './Navbar.scss'
 
 const Navbar = ({ openLogin }) => {
   const [activeMenuItem, setActiveMenuItem] = useState('home')
-  const { getTotalCartAmount } = useContext(StoreContext)
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext)
 
   return (
     <div className='navbar'>
@@ -46,11 +46,30 @@ const Navbar = ({ openLogin }) => {
           <Link to='/cart'>
             <img src={assets.basket_icon} alt='' />
           </Link>
-          <div className={getTotalCartAmount() === 0 ? '' : 'navbar__dot'}></div>
+          <div
+            className={getTotalCartAmount() === 0 ? '' : 'navbar__dot'}
+          ></div>
         </div>
-        <button className='navbar__button' onClick={openLogin}>
-          sign in
-        </button>
+        {!token ? (
+          <button className='navbar__button' onClick={openLogin}>
+            sign in
+          </button>
+        ) : (
+          <div className='navbar__profile'>
+            <img src={assets.profile_icon} alt='' />
+            <ul className='navbar__profile__dropdown'>
+              <li>
+                <img src={assets.bag_icon} alt="" />
+                <p>Orders</p>
+              </li>
+              <hr />
+              <li>
+                <img src={assets.logout_icon} alt="" />
+                <p>Logout</p>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   )
