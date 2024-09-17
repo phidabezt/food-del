@@ -4,7 +4,7 @@ import { StoreContext } from '../../context/StoreContext'
 import './Cart.scss'
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
+  const { cartItems, foodList, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext)
   const navigate = useNavigate()
 
@@ -22,12 +22,12 @@ const Cart = () => {
         <br />
         <hr />
 
-        {food_list.map((item, index) => {
+        {foodList.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
               <div>
                 <div className='cart__title cart__item'>
-                  <img src={item.image} alt='' />
+                  <img src={ url + '/images/' +item.image} alt='' />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>
