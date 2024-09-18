@@ -1,6 +1,7 @@
 import orderModel from '../models/orderModel.js'
 import userModel from '../models/userModel.js'
 import Stripe from 'stripe'
+import 'dotenv/config'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -41,7 +42,7 @@ const placeOrder = async (req, res) => {
       quantity: 1,
     })
 
-    const session = await stripe.checkout.session.create({
+    const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: 'payment',
       success_url: `${frontEndUrl}/verify?success=true&orderId=${newOrder._id}`,
@@ -50,16 +51,41 @@ const placeOrder = async (req, res) => {
 
     res.json({
       success: true,
-      session_url: session.url
+      session_url: session.url,
     })
   } catch (error) {
     console.log(error)
     res.json({
       success: false,
-      message: 'Error'
+      message: 'Error',
     })
-
   }
 }
 
-export { placeOrder }
+// TODO: implement web hook here, below is temporary solution
+const verifyOrder = async (req, res) => {
+  const { orderId, success } = req.body
+  try {
+    if (success === 'true') {
+      await orderModel.findByIdAndUpdate(orderId, { payment: true })
+      res.json({
+        success: true,
+        message: 'Paid',
+      })
+    } else {
+      await orderModel.findByIdAndDelete(orderId)
+      res.json({
+        success: false,
+        message: 'Not Paid',
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({
+      success: false,
+      message: 'Error',
+    })
+  }
+}
+
+export { placeOrder, verifyOrder }
