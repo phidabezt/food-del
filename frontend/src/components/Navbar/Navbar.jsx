@@ -65,7 +65,7 @@ const Navbar = ({ openLogin }) => {
           <div className='navbar__profile'>
             <img src={assets.profile_icon} alt='' />
             <ul className='navbar__profile__dropdown'>
-              <li>
+              <li onClick={() => navigate('/myorders')}>
                 <img src={assets.bag_icon} alt="" />
                 <p>Orders</p>
               </li>
